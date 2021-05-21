@@ -6,62 +6,268 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleResults.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://kit.fontawesome.com/ffc589d0fc.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <section>
-        <header>    
-            <ul>
-                <li><a href="#">Gmail</a></li>
-                <li><a href="#">Zdjęcia</a></li>
-                <li><a href="#"><img src="bars.png" alt=""></a></li>
-                <li><button> Zaloguj się</button></li>
-            </ul>
-        </header>
+    <div id="wrapper" :class="[googleSearch != '' ? 'results' : 'home']">
+        <section>
+            <header>    
+                <ul>
+                    <li><a href="#">Gmail</a></li>
+                    <li><a href="#">Zdjęcia</a></li>
+                    <li><a href="#"><img src="bars.png" alt=""></a></li>
+                    <li><button> Zaloguj się</button></li>
+                </ul>
+            </header>
 
-        <div class="main">
-            <img src="google.png">
-            
-            <div class="searchBox">
-                <input type="text" class="search">
-                <div class="icons">
-                    <div><img src="search.png" ></div>
-                    <div><img src="keyboard.png"></div>
+            <div class="main">
+                <img src="google.png">
+                
+                <div class="searchBox">
+                    <input v-model="googleSearch" type="text" class="search">
+                        {{googleSearch}}
+
+                    <div class="icons">
+                        <div><img src="search.png" ></div>
+                        <div><img src="keyboard.png"></div>
+                    </div>
+                    
+                </div>
+
+                <div class="buttons">
+                    <button>Szukaj w Gooogle</button>
+                    <button>Szczęśliwy traf</button>
                 </div>
                 
             </div>
+            <div class="footer">
+                <div class="row row1">
+                    
+                    <p class="country">Polska</p>
+                </div>
+                <div class="row row2">
+                    <ul>
+                    <li><a href="#">O nas</a></li> 
+                    <li><a href="#">Reklamuj się</a></li> 
+                    <li><a href="#">Dla firm</a></li> 
+                    <li><a href="#">Jak działa wyszukiwarka</a></li> 
+                    </ul>
 
-            <div class="buttons">
-                <button>Szukaj w Gooogle</button>
-                <button>Szczęśliwy traf</button>
+                    <ul>
+                        <li><img src="listek.png"></li>
+                        <li><a href="#">Neutralność węglowa od 2007 roku</a></li>
+                    </ul>
+
+                    <ul>
+                        <li><a href="#">Prywatność</a></li> 
+                        <li><a href="#">Warunki</a></li> 
+                        <li><a href="#">Ustawienia</a></li> 
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- KOD DLA STRONY Z WYNIKAMI -->
+        
+        <div id="header">
+            <div id="topbar">
+                <img id="searchbarimage" src="logo.png" />
+                <div id="searchbar" type="text">
+                    <input id="searchbartext" type="text" value="jakiś wynik" />
+                
+                    <button id="searchbarx">
+                        <span id="searchbarborder">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtAJA0oIsYgdH30wmsfIJw7wbuG-dFHwKZMg&usqp=CAU" style="height:10px;width:10px;">                   
+                        </span>
+                     </button>
+
+                    <button id="searchbarkeyboard">
+                        <img src="keyboard.png" />
+                    </button>
+                    
+                    <button id="searchbarbutton">
+                        <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+                
+             <img class="menu" src="menu.svg"/>	
+            <button class="login-button">Zaloguj się</button>
+            </div>
+            <div id="optionsbar">
+                <ul class="optionsmenu1">
+                    <a href="#">ss</a>
+                    <li class="optionsmenuactive"><i class="fa fa-search"></i> Wszystko</li>
+                    <li><i class="far fa-image" style="color: #5f6368;"></i> Grafika</li>
+                    <li><i class="far fa-play-circle" style="color: #5f6368;"></i> Wideo</li>
+                    <li><i class="fa fa-newspaper-o" style="color: #5f6368;"></i> Wiadomości</li>
+                    <li><i class="fa fa-map-marker-alt" style="color: #5f6368;"></i></i> Mapy</li>
+                    <li><i class="fas fa-ellipsis-v"style="color: #5f6368;"></i> Więcej</li>
+                </ul>
+    
+                <ul class="optionsmenu2">
+                    <li>Ustawienia</li>
+                    <li>Narzędzia</li>
+                </ul>
+            </div>
+        </div>
+        <div id="searchresultsarea">
+            <p id="searchresultsnumber">Około 137,000 wyników (0.42 s) </p>
+            <div class="searchresult" style="margin-top:30px;">
+            <a href="https://www.google.com/search?q=jaki%C5%9B+wunik+google&sxsrf=ALeKk034keCFyPeQ9A0a8ClLMtTiBIRYMw%3A1621452981591&ei=tWilYOyuI4e5ggfbmrzgCw&oq=jaki%C5%9B+wunik+google&gs_lcp=Cgdnd3Mtd2l6EAMyBQghEKABUNgQWLgZYLkaaABwAngAgAG-AogB6gSSAQMzLTKYAQCgAQGqAQdnd3Mtd2l6wAEB&sclient=gws-wiz&ved=0ahUKEwis3fKHv9bwAhWHnOAKHVsND7wQ4dUDCA4&uact=5">
+                support.google.com<span style="color:gray"> > websearch > answer</span><button>▼</button>
+                <h2 >Sprawdzanie wyników wyszukiwania podrózy przez Gmaila ...</h2></a>
+            <p>Wyniki z Twoich usług Google są prywatne. Twoich informacji nie zobaczy w swoich wynikach nikt inny, chyba że na to pozwolisz lub udostępnisz te dane ...</p>
+            </div>
+    
+            <div class="searchresult" style="margin-top:30px;">
+                <a href="https://www.google.com/search?q=jaki%C5%9B+wunik+google&sxsrf=ALeKk034keCFyPeQ9A0a8ClLMtTiBIRYMw%3A1621452981591&ei=tWilYOyuI4e5ggfbmrzgCw&oq=jaki%C5%9B+wunik+google&gs_lcp=Cgdnd3Mtd2l6EAMyBQghEKABUNgQWLgZYLkaaABwAngAgAG-AogB6gSSAQMzLTKYAQCgAQGqAQdnd3Mtd2l6wAEB&sclient=gws-wiz&ved=0ahUKEwis3fKHv9bwAhWHnOAKHVsND7wQ4dUDCA4&uact=5">
+                    support.google.com<span style="color:gray"> > websearch > answer</span><button>▼</button>
+                    <h2 >Zawężanie wyników wyszukiwania-Wyszukiwarka Google...</h2></a>
+                <p>Wyniki z Twoich usług Google są prywatne. Twoich informacji nie zobaczy w swoich wynikach nikt inny, chyba że na to pozwolisz lub udostępnisz te dane ...</p>
+            </div>
+    
+            <div class="searchresult" style="margin-top:30px;">
+                <a href="https://www.google.com/search?q=jaki%C5%9B+wunik+google&sxsrf=ALeKk034keCFyPeQ9A0a8ClLMtTiBIRYMw%3A1621452981591&ei=tWilYOyuI4e5ggfbmrzgCw&oq=jaki%C5%9B+wunik+google&gs_lcp=Cgdnd3Mtd2l6EAMyBQghEKABUNgQWLgZYLkaaABwAngAgAG-AogB6gSSAQMzLTKYAQCgAQGqAQdnd3Mtd2l6wAEB&sclient=gws-wiz&ved=0ahUKEwis3fKHv9bwAhWHnOAKHVsND7wQ4dUDCA4&uact=5">
+                    support.google.com<span style="color:gray"> > websearch > answer</span><button>▼</button>
+                    <h2 >Sprawdzanie wyników wyszukiwania podrózy przez Gmaila ...</h2></a>
+                <p>Wyniki z Twoich usług Google są prywatne. Twoich informacji nie zobaczy w swoich wynikach nikt inny, chyba że na to pozwolisz lub udostępnisz te dane ...</p>
+            </div>
+    
+            <div class="searchresult" style="margin-top:30px;">
+                <a href="https://www.google.com/search?q=jaki%C5%9B+wunik+google&sxsrf=ALeKk034keCFyPeQ9A0a8ClLMtTiBIRYMw%3A1621452981591&ei=tWilYOyuI4e5ggfbmrzgCw&oq=jaki%C5%9B+wunik+google&gs_lcp=Cgdnd3Mtd2l6EAMyBQghEKABUNgQWLgZYLkaaABwAngAgAG-AogB6gSSAQMzLTKYAQCgAQGqAQdnd3Mtd2l6wAEB&sclient=gws-wiz&ved=0ahUKEwis3fKHv9bwAhWHnOAKHVsND7wQ4dUDCA4&uact=5">
+                    support.google.com<span style="color:gray"> > websearch > answer</span><button>▼</button>
+                    <h2 >14 sposobów wyszukiwania w Google, których 95% z Was nie ...</h2></a>
+                <p>Szukanie frazy – zastosowanie cudzysłowu. Wyniki wyszukiwania w Google konkretnych fraz mogą być bardziej trafne, gdy zastosujemy cudzysłów. Algorytmy ...</p>
+                
+            </div>
+    
+            <div class="searchresult" style="margin-top:30px;">
+                <a href="https://www.google.com/search?q=jaki%C5%9B+wunik+google&sxsrf=ALeKk034keCFyPeQ9A0a8ClLMtTiBIRYMw%3A1621452981591&ei=tWilYOyuI4e5ggfbmrzgCw&oq=jaki%C5%9B+wunik+google&gs_lcp=Cgdnd3Mtd2l6EAMyBQghEKABUNgQWLgZYLkaaABwAngAgAG-AogB6gSSAQMzLTKYAQCgAQGqAQdnd3Mtd2l6wAEB&sclient=gws-wiz&ved=0ahUKEwis3fKHv9bwAhWHnOAKHVsND7wQ4dUDCA4&uact=5">
+                    support.google.com<span style="color:gray"> > websearch > answer</span><button>▼</button>
+                    <h2 >Wyniki wyszukiwań Google – skąd takie rozbieżności?</h2></a>
+                <p>Otóż inaczej będą prezentować się wyniki wyszukiwania po wpisaniu tej samej frazy przez ... Google przechwytuje adres IP i za jego pomocą generuje wyniki, np. po wpisaniu frazy ... Jaki jest koszt pozycjonowania sklepu?</p>
+            </div>
+    
+            <div class="searchresult" style="margin-top:30px;">
+                <a href="https://www.google.com/search?q=jaki%C5%9B+wunik+google&sxsrf=ALeKk034keCFyPeQ9A0a8ClLMtTiBIRYMw%3A1621452981591&ei=tWilYOyuI4e5ggfbmrzgCw&oq=jaki%C5%9B+wunik+google&gs_lcp=Cgdnd3Mtd2l6EAMyBQghEKABUNgQWLgZYLkaaABwAngAgAG-AogB6gSSAQMzLTKYAQCgAQGqAQdnd3Mtd2l6wAEB&sclient=gws-wiz&ved=0ahUKEwis3fKHv9bwAhWHnOAKHVsND7wQ4dUDCA4&uact=5">
+                    support.google.com<span style="color:gray"> > websearch > answer</span><button>▼</button>
+                    <h2 >Wyniki wyszukiwania Google: 10 przykładów - Agencja ...</h2></a>
+                <p> jest tego dużo, dużo więcej. Poznaj przykłady, w jaki sposób Google pomaga użytkownikom Internetu odnaleźć potrzebne wiadomości. Spis ...</p>
+            </div>
+    
+            <div class="searchresult" style="margin-top:30px;">
+                <a href="https://www.google.com/search?q=jaki%C5%9B+wunik+google&sxsrf=ALeKk034keCFyPeQ9A0a8ClLMtTiBIRYMw%3A1621452981591&ei=tWilYOyuI4e5ggfbmrzgCw&oq=jaki%C5%9B+wunik+google&gs_lcp=Cgdnd3Mtd2l6EAMyBQghEKABUNgQWLgZYLkaaABwAngAgAG-AogB6gSSAQMzLTKYAQCgAQGqAQdnd3Mtd2l6wAEB&sclient=gws-wiz&ved=0ahUKEwis3fKHv9bwAhWHnOAKHVsND7wQ4dUDCA4&uact=5">
+                    support.google.com<span style="color:gray"> > websearch > answer</span><button>▼</button>
+                    <h2 >Sprawdzanie wyników wyszukiwania podrózy przez Gmaila ...</h2></a>
+                <p>Wyniki z Twoich usług Google są prywatne. Twoich informacji nie zobaczy w swoich wynikach nikt inny, chyba że na to pozwolisz lub udostępnisz te dane ...</p>
+            </div>
+    
+            <div class="searchresult" style="margin-top:30px;">
+                <a href="https://www.google.com/search?q=jaki%C5%9B+wunik+google&sxsrf=ALeKk034keCFyPeQ9A0a8ClLMtTiBIRYMw%3A1621452981591&ei=tWilYOyuI4e5ggfbmrzgCw&oq=jaki%C5%9B+wunik+google&gs_lcp=Cgdnd3Mtd2l6EAMyBQghEKABUNgQWLgZYLkaaABwAngAgAG-AogB6gSSAQMzLTKYAQCgAQGqAQdnd3Mtd2l6wAEB&sclient=gws-wiz&ved=0ahUKEwis3fKHv9bwAhWHnOAKHVsND7wQ4dUDCA4&uact=5">
+                    support.google.com<span style="color:gray"> > websearch > answer</span><button>▼</button>
+                    <h2 >Rodzaje wyników wyszukiwania Google - ponad 20</h2></a>
+                <p>Jeśli wciąż nie wiesz czym są rich snippets, wyniki lokalne, knowledge panel lub ... Rodzaje wyników wyszukiwania Google wzbogacono jakiś czas temu o ...</p>
+            </div>
+    
+            <div class="searchresult" style="margin-top:30px;">
+                <a href="https://www.google.com/search?q=jaki%C5%9B+wunik+google&sxsrf=ALeKk034keCFyPeQ9A0a8ClLMtTiBIRYMw%3A1621452981591&ei=tWilYOyuI4e5ggfbmrzgCw&oq=jaki%C5%9B+wunik+google&gs_lcp=Cgdnd3Mtd2l6EAMyBQghEKABUNgQWLgZYLkaaABwAngAgAG-AogB6gSSAQMzLTKYAQCgAQGqAQdnd3Mtd2l6wAEB&sclient=gws-wiz&ved=0ahUKEwis3fKHv9bwAhWHnOAKHVsND7wQ4dUDCA4&uact=5">
+                    support.google.com<span style="color:gray"> > websearch > answer</span><button>▼</button>
+                    <h2 >Jak działa wyszukiwarka Google | Algorytmy wyszukiwania</h2></a>
+                <p>Dowiedz się, w jaki sposób algorytmy wyszukiwania Google znajdują najbardziej trafne wyniki za pomocą metod takich jak analiza słów w wyszukiwanym haśle ...</p>
+            </div>
+    
+            <div class="searchresult" style="margin-top:30px;">
+                <a href="https://www.google.com/search?q=jaki%C5%9B+wunik+google&sxsrf=ALeKk034keCFyPeQ9A0a8ClLMtTiBIRYMw%3A1621452981591&ei=tWilYOyuI4e5ggfbmrzgCw&oq=jaki%C5%9B+wunik+google&gs_lcp=Cgdnd3Mtd2l6EAMyBQghEKABUNgQWLgZYLkaaABwAngAgAG-AogB6gSSAQMzLTKYAQCgAQGqAQdnd3Mtd2l6wAEB&sclient=gws-wiz&ved=0ahUKEwis3fKHv9bwAhWHnOAKHVsND7wQ4dUDCA4&uact=5">
+                    support.google.com<span style="color:gray"> > websearch > answer</span><button>▼</button>
+                    <h2 >Krytycy ganią Google'a za nowy wygląd wyników wyszukiwania</h2></a>
+                <p> Google co jakiś czas eksperymentuje z tym, jak wyglądają jego wyniki wyszukiwania i w jaki sposób odróżniają się od nich reklamy. Trudno.</p>
+            </div>
+            <div class="relatedsearches">
+                <h3>Podobne wyszukiwania</h3>
+                <div class="relatedlists">
+                    <ul class="relatedleft">
+                        <li>Wynik <b>test</b></li>
+                        <li><b>Googlle</b> kla</li>
+                        <li><b>Googlee</b> tra</li>
+                        <li><b>Guugle</b> ma</li>
+                    </ul>
+                    <ul class="relatedright">
+                        <li><b>AGH</b> w rankingach</li>
+                        <li>Adres e-mail <b>AGH</b></li>
+                        <li><b>AGH</b> najlepszą uczelnią</li>
+                        <li><b>AGH</b> rekrutacja</li>
+                    </ul>
+                </div>
             </div>
             
+            
+            <table>
+                <tr>
+                  <td><span class="blue">G</span></td>
+                  <td><span class="red">o</span></td>
+                  <td><span class="yellow">o</span></td>
+                  <td><span class="yellow">o</span></td>
+                  <td><span class="yellow">o</span></td>
+                  <td><span class="yellow">o</span></td>
+                  <td><span class="yellow">o</span></td>
+                  <td><span class="yellow">o</span></td>
+                  <td><span class="yellow">o</span></td>
+                  <td><span class="yellow">o</span></td>
+                  <td><span class="yellow">o</span></td>
+                  <td><span class="yellow">o</span></td>
+                  <td><span class="blue">g</span></td>
+                  <td><span class="green">l</span></td>
+                  <td><span class="red">e</span></td>
+                  <td rowspan="2" style="width: 10px;"></td>
+                  <td><span class="blue"><i class="fas fa-angle-right" style="color:#4285f4; font-size:20px"></i></span></td>
+                </tr>
+                <tr>
+                  <td class="pageNumber"></td>
+                  <td class="pageNumber"></td>
+                  <td class="pageNumber">1</td>
+                  <td class="pageNumber">2</td>
+                  <td class="pageNumber">3</td>
+                  <td class="pageNumber">4</td>
+                  <td class="pageNumber">5</td>
+                  <td class="pageNumber">6</td>
+                  <td class="pageNumber">7</td>
+                  <td class="pageNumber">8</td>
+                  <td class="pageNumber">9</td>
+                  <td class="pageNumber">10</td>
+                  <td colspan="3"></td>
+                  <td class="pageNumber">Następna</td>
+                </tr>
+              </table>
         </div>
-        <div class="footer">
-            <div class="row row1">
-                
-                <p class="country">Polska</p>
+    
+        <div id="footer">
+            <div id="footerlocation">
+                <p><span style="margin-right: 25px">Polska</span> <span class="footerborder"><span class="dot"></span></span> <span style="color: #3c4043;font-weight: bold;">Kraków</span>    &nbsp;
+                - Z twojego adresu internetowego - Użyj dokładnej lokalizacji - Dowiedz się więcej</p>
             </div>
-            <div class="row row2">
-                <ul>
-                   <li><a href="#">O nas</a></li> 
-                   <li><a href="#">Reklamuj się</a></li> 
-                   <li><a href="#">Dla firm</a></li> 
-                   <li><a href="#">Jak działa wyszukiwarka</a></li> 
-                </ul>
+            
+            <ul id="footermenu">
+                <li>Pomoc</li>
+                <li>Prześlij opinię</li>
+                <li>Prywatność</li>
+                <li>Warunki</li>
+            </ul>
+        </div>  
 
-                <ul>
-                    <li><img src="listek.png"></li>
-                    <li><a href="#">Neutralność węglowa od 2007 roku</a></li>
-                </ul>
-
-                <ul>
-                    <li><a href="#">Prywatność</a></li> 
-                    <li><a href="#">Warunki</a></li> 
-                    <li><a href="#">Ustawienia</a></li> 
-                 </ul>
-            </div>
-        </div>
-    </section>
-
+    </div>
+    <script>
+		var app = new Vue({
+		  el: '#wrapper',
+		  data: {
+			googleSearch: ''
+		  }
+		})
+	  </script>
 </body>
 </html>

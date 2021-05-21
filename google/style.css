@@ -161,3 +161,30 @@ section .footer .row.row2 ul a
     color: #5f6368;
     margin-right: 25px;
 }
+
+/*Nie wyświetlaj poniższego kodu: strona z wynikami*/
+
+.home #header
+{
+	display:none;
+}
+.home .searchresult
+{
+	display:none;
+}
+.home #searchresultsnumber
+{
+	display:none;
+}
+.home .relatedsearches
+{
+	display:none;
+}
+.home table
+{
+	display:none;
+}
+.home #footer
+{
+	display:none;
+}
