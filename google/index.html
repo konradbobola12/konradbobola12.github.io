@@ -7,6 +7,7 @@
     <title>Google</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styleResults.css">
+    <script src="cities.js" ></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <script src="https://kit.fontawesome.com/ffc589d0fc.js" crossorigin="anonymous"></script>
 </head>
@@ -70,12 +71,13 @@
         </section>
 
         <!-- KOD DLA STRONY Z WYNIKAMI -->
+
         
         <div id="header">
             <div id="topbar">
                 <img id="searchbarimage" src="logo.png" />
                 <div id="searchbar" type="text">
-                    <input id="searchbartext" type="text" value="jakiś wynik" />
+                    <input ref="inputFocus" id="searchbartext" type="text" v-model="googleSearch" />
                 
                     <button id="searchbarx">
                         <span id="searchbarborder">
@@ -116,8 +118,19 @@
                 </ul>
             </div>
         </div>
+
         <div id="searchresultsarea">
             <p id="searchresultsnumber">Około 137,000 wyników (0.42 s) </p>
+            <div class="vue-cities">
+			    <p>Miasta zawierające "{{ googleSearch }}":</p>
+                <ul>
+                    <li v-for="city in filteredCities">					
+						{{ city.name }}
+                    </li>
+                </ul>
+				</div>
+            
+            
             <div class="searchresult" style="margin-top:30px;">
             <a href="https://www.google.com/search?q=jaki%C5%9B+wunik+google&sxsrf=ALeKk034keCFyPeQ9A0a8ClLMtTiBIRYMw%3A1621452981591&ei=tWilYOyuI4e5ggfbmrzgCw&oq=jaki%C5%9B+wunik+google&gs_lcp=Cgdnd3Mtd2l6EAMyBQghEKABUNgQWLgZYLkaaABwAngAgAG-AogB6gSSAQMzLTKYAQCgAQGqAQdnd3Mtd2l6wAEB&sclient=gws-wiz&ved=0ahUKEwis3fKHv9bwAhWHnOAKHVsND7wQ4dUDCA4&uact=5">
                 support.google.com<span style="color:gray"> > websearch > answer</span><button>▼</button>
@@ -265,9 +278,22 @@
 		var app = new Vue({
 		  el: '#wrapper',
 		  data: {
-			googleSearch: ''
-		  }
-		})
+			googleSearch: '',
+            cities: window.cities,
+		  },
+          computed: {
+                    filteredCities: function() {
+                        let results = this.cities.filter(city => city.name.includes(this.googleSearch));
+                        return results.slice(0,10);
+                    }
+                },
+				updated() {
+                    this.$nextTick(() => {
+                        this.$refs.inputFocus.focus();
+                    });
+                }
+            
+        });
 	  </script>
 </body>
 </html>
